@@ -2,7 +2,7 @@
 #“load_data_lake.sh”
 #by Nikki Haas
 
-#step 1: run this script to remove all spaces in files in the directory
+#step 1: run this script to remove all spaces in file names in the directory on my local laptop.
 
 for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
 
