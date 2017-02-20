@@ -2,11 +2,7 @@
 #“load_data_lake.sh”
 #by Nikki Haas
 
-<<<<<<< HEAD
 #step 1 (from local): run this script to remove all spaces in files in the directory
-=======
-#step 1: run this script to remove all spaces in file names in the directory on my local laptop.
->>>>>>> origin/master
 
 for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
 
@@ -27,7 +23,6 @@ for d in *; do
     ( cd "$d" && for x in *.csv; do sed '1d' "$x" > tmpfile; mv tmpfile "$x"; done )
   fi
 done
-<<<<<<< HEAD
 
 #step 6: write the data into HDFS
 
@@ -64,5 +59,3 @@ su - w205
 hive
 
 
-=======
->>>>>>> origin/master
