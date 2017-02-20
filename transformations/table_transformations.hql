@@ -15,6 +15,12 @@ use exercise1;
 --Formatting note:  Cases in text fields are just annoying.  To save myself a ton of WHERE UPPER(field) LIKE.... 
 --I will use UPPER in all transformations.
 
+-- Stylistic Note:  Some of these tables are fact tables, and others are dim tables.  If this were a true
+-- relational database model, I would remove the measure_names from all tables except the measure_dates dim table
+-- and all the hospital location data from all tables except the hospital dim table.  However, HIVE and Hadoop are not 
+-- relational databases and are in fact designed to take a data dump and make a facsimile of a relational DB, so I will
+-- leave the tables as-is except for in the very redundant case of the individual survey responses.
+
 -- step 2: Groom hospitals table into correct datatypes using CTAS
 
 DROP TABLE IF EXISTS hospitals_t;
