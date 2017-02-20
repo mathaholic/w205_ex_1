@@ -46,7 +46,7 @@ hdfs dfs -put /data/w205_exercise_1/hvbp_hcahps_05_28_2015/hvbp_hcahps_05_28_201
 #step 7: get into Hive
 
 # as the root user
--- ./start-hadoop.sh
+./start-hadoop.sh
 # as root user
 sudo -u hdfs hdfs dfs -chmod 777 /
 cd /data
