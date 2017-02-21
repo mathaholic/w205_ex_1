@@ -56,6 +56,9 @@ CREATE TABLE IF NOT EXISTS effective_care_t AS
 	UPPER(measure_id) measure_id,
 	UPPER(measure_name) measure_name,
 	-- There is some malformed data in this column that will return as NULL in this column
+	-- This includes emergency room volume.  Since there is no quantitative information
+	-- with the emergency room volumne records, this information will not aid us
+	-- in our analysis for now.
 	CAST(score as int) score, 
 	-- There is some malformed data in this column that will return as NULL in this column
 	CAST(sample as int) sample, 

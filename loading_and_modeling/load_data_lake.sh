@@ -43,6 +43,8 @@ hdfs dfs -put /data/w205_exercise_1/Measure_Dates/Measure_Dates.csv measures
 hdfs dfs -mkdir surveys_responses
 hdfs dfs -put /data/w205_exercise_1/hvbp_hcahps_05_28_2015/hvbp_hcahps_05_28_2015.csv surveys_responses
 
+hdfs dfs -mkdir measure_supplement
+hdfs dfs -put /data/w205_exercise_1/measure_score_supplement/measure_score_supplement.csv measure_supplement
 #step 7: get into Hive
 
 # as the root user
