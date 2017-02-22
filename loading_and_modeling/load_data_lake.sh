@@ -45,7 +45,11 @@ hdfs dfs -put /data/w205_exercise_1/hvbp_hcahps_05_28_2015/hvbp_hcahps_05_28_201
 
 hdfs dfs -mkdir measure_supplement
 hdfs dfs -put /data/w205_exercise_1/measure_score_supplement/measure_score_supplement.csv measure_supplement
-#step 7: get into Hive
+
+hdfs dfs -mkdir effective_care_state
+hdfs dfs -put /data/w205_exercise_1/Timely_and_Effective_Care_-_State/Timely_and_Effective_Care_-_State.csv effective_care_state
+
+#step 7: start Hive
 
 # as the root user
 ./start-hadoop.sh

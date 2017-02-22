@@ -37,3 +37,7 @@ CREATE TABLE IF NOT EXISTS exercise1.survey_responses(provider_number string, ho
 -- add supplementary measure file, is a dim table
 DROP TABLE IF EXISTS exercise1.measure_supp;
 CREATE TABLE IF NOT EXISTS exercise1.measure_supp(measure_id string, qualifier string) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTIES("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '\\') STORED AS TEXTFILE LOCATION '/user/w205/measure_supplement';
+
+
+DROP TABLE IF EXISTS exercise1.effective_care_state;
+CREATE TABLE IF NOT EXISTS exercise1.effective_care_state(state string, condition string, measure_name string, measure_id string, score string,footnote string, measure_start_date string, measure_end_date string) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' WITH SERDEPROPERTIES("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '\\') STORED AS TEXTFILE LOCATION '/user/w205/effective_care_state';

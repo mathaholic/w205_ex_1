@@ -137,6 +137,20 @@ CREATE TABLE IF NOT EXISTS survey_responses_t AS
 	FROM survey_responses;
 
 
+
+DROP TABLE IF EXISTS effective_care_state_t;
+CREATE TABLE IF NOT EXISTS effective_care_state_t AS
+	SELECT
+	UPPER(state) state,
+	UPPER(condition) condition,
+	UPPER(measure_name) measure_name,
+	UPPER(measure_id) measure_id,
+	CAST(score as float) score,
+	UPPER(footnote) footnote,
+	from_unixtime(unix_timestamp(measure_start_date,'MM/dd/yyyy'), 'yyyy-MM-dd') measure_start_date,
+	from_unixtime(unix_timestamp(measure_end_date,'MM/dd/yyyy'), 'yyyy-MM-dd') measure_end_date
+	FROM effective_care_state;
+
 --Name Linking Quality to Payment: Hospital Value-Based Purchasing (HVBP) Program
 -- Description/
 -- Background
