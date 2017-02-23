@@ -27,7 +27,7 @@
 set hive.cli.print.header=true;
 
 -- use the database the tables reside in to cut down on typing
-use exerise1;
+use exercise1;
 
 CREATE TABLE exercise1.question_1 AS
 SELECT

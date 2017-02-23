@@ -9,14 +9,33 @@
 -- with patient survey responses?
 
 
--- Use the answer from question 1 as a temporary table, and join to the survey responses.
--- Use corr(col1, col2) to calculate the correlation.
+-- Use the answer from question 1 as a temporary table, and join to the survey responses
 
-use exercise1;
 
-set hive.cli.print.header=true;
 
-CREATE TABLE exercise1.question_4_ans AS SELECT
+-- quick check with just the top rated hospitals
+
+
+Select
+corr(x.score_agg, (y.hcahps_base_score + y.hcahps_consistency_score)) correlation_score
+from 
+question_1 x 
+join
+survey_responses_t  y
+on x.provider_id = y.provider_id
+
+
+-- results
+
+-- OK
+-- correlation_score
+-- -0.015390079896484768
+-- Time taken: 68.827 seconds, Fetched: 1 row(s)
+
+
+-- try on all of the base table from q1
+
+Select
 corr(a.score_agg, (b.hcahps_base_score + b.hcahps_consistency_score)) correlation_score,
 corr(a.score_variance, (b.hcahps_base_score + b.hcahps_consistency_score)) correlation_var
 from 
@@ -79,17 +98,17 @@ on u.provider_id = etc.provider_id
 group by u.provider_id, u.hospital_name) a
 join
 survey_responses_t  b
-on a.provider_id = b.provider_id;
+on a.provider_id = b.provider_id
 
 
--- expected result
+-- results
 -- OK
 -- correlation_score	correlation_var
 -- -0.26682328771747466	-0.08321417076776778
 -- Time taken: 467.1 seconds, Fetched: 1 row(s)
 
 
--- this is a very weak correlation, or even a nonexistent correlation for both the hospitals performancy
+-- This is a very weak correlation, or even a nonexistent correlation for both the hospitals performancy
 -- and the variability in measure scores.  I am not surprised, as opinion polls are rarely scientific.  
 -- The measures are based upon concrete, recorded observations from the hospitals, and not the combination of a 
 -- patient's recollections and their whims on the day they filled out the survey.
