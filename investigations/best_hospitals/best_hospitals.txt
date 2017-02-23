@@ -1,0 +1,18 @@
+best_hospitals.txt
+
+
+To answer this question, I first evaluated the effective_care_t table.  This is the transformed version of the Timely and Effective Care - Hospitals csv.  I discovered that some of the measures had non-numeric scores, such as Emergency room volume.  Since this measure had no scores, I did not see how it could be quantified so it was not included in the analysis.  I also realized that some scores were times, and some were proportions.  In addition, in reading the documentation, I realized that for some scores, the lower the better, and for others, the higher the better.  So, I created a supplementary table called measure_supp that contained the measure ids and a column I called qualifier that had either "B" for basketball (higher scores are better in basketball) or "G" for golf (lower scores are better in golf) or NULL for non numeric scores like the Emergency Room Volumes.  
+
+I then joined the effective care table to the supplementary table with the intent of separating out the two different classifications of measures.  Once I got each hospital's B and G scores, I ranked them manually using percentiles.  Any hospital that had both a B score above the 75th percentile AND a G score below the 25th percentile was considered the best of the best hospitals by my code. It was very important to have both classifications of scores meet these thresholds, as I found that the top hospital with the top B score only had 37 beds when I checked with and outside source, and was only for knee and hip surgeries.  I got back something like 35 hospitals when I considered both scores, so I then combined the scores and brought back the top ten results.  In addition,  I pulled in the variance and average to the final table.  When I checked these hospitals against US News and World Report, I found that they were consistently listed above average.  
+
+provider_id	hosiptal_name	score_agg	score_variance	score_avg
+170123	WESLEY MEDICAL CENTER	3701	1155.4158239143364	90.26829268292683
+420087	ROPER HOSPITAL	3595	1043.3872694824513	87.6829268292683
+160069	MERCY MEDICAL CENTER-DUBUQUE	3525	1131.8777120315585	90.38461538461539
+520088	ST AGNES HOSPITAL	3514	1165.9775	87.85
+370106	INTEGRIS SOUTHWEST MEDICAL CENTER	3496	1155.513384889946	85.26829268292683
+490118	HENRICO DOCTORS' HOSPITAL	3494	1383.2675871137408	89.58974358974359
+390091	UPMC NORTHWEST	3467	1110.8193749999996	86.675
+520083	ST MARYS HOSPITAL	3464	1187.8395792241945	88.82051282051282
+170176	OVERLAND PARK REG MED CTR	3464	1204.0959894806049	88.82051282051282
+100166	DOCTORS HOSPITAL OF SARASOTA	3439	921.618699780862	92.94594594594595

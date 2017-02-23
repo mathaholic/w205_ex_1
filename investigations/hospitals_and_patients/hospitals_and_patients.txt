@@ -1,0 +1,7 @@
+hospitals_and_patients.txt
+
+To find the correlation between survey scores, I joined my base table from question 1 to the survey responses on the provider ID.  I used corr(q1.score, (s.hcahps_base_score + s.hcahps_consistency_score)) and corr(q1.score_var, (s.hcahps_base_score + s.hcahps_consistency_score)) because the documentation for this dataset said the base and consistency scores are combined to make a total HCAHPS score that can be as high as 100.  The result is a very weak correlation, or even a nonexistent correlation for both the hospitals performance and the variability in measure scores.  I am not surprised, as opinion polls are rarely scientific.  The measure scores in Timely and Effective Care are based upon concrete, recorded observations from the hospitals, and not the combination of a patient's recollections and their whims on the day they filled out the survey. If we want further proof that opinion polls do not reflect reality, Nate Silver painfully reminded us of this last November.
+
+
+correlation_score	correlation_var
+-0.26682328771747466	-0.08321417076776778

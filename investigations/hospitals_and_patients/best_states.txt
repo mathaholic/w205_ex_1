@@ -1,0 +1,17 @@
+best_states.txt
+
+For this question, I wanted to explore using the RANK() OVER() functions instead of the percentile functions.  In addition, I reviewed both the State and Hospital Timely and Effective Care csvs before choosing which to use in my analysis.  I was concerned that the lowest populated states would not fare well using my method in question 1, due to the sheer number of hospitals in the most populated states vs the least populated state.  This proved to be a a well-chosen method, as if I were to pivot my question 1 query by state, Maine would be one of the worst performing states and I found that in fact, using Timely and Effective Care States informed me that Maine is one of the best performing states.  The information in the States csv appears that it has been normalized on some metric, presumably population density or number of hospitals per metropolitan area.  However, I never found any documentation confirming this.
+
+Much like with question 1, I broke the measures into B and G classifications, and evaluated each separately. I used  RANK() OVER(PARTITION qualifier ORDER BY SCORE(score)) to rank the different measure classifications by state.  I then returned the states with B rankings higher than 25 AND G rankings lower than 25 (remember, "G" for Golf). This gave me 15 states. The combined score for all of these states was calculated again, and the top 10 were returned.  I believe my results are sound because some of the top states have famously known hospitals such as the Mayo Clinic and the UW Medical Center.
+
+state	agg_score	avg_score	score_variance	state_rank
+ID	12596.0	95.42424242424242	3220.7669880624426	10
+TN	12764.0	96.6969696969697	3463.1505968778706	9
+MO	12778.0	96.8030303030303	3262.7642332415053	8
+IL	13092.0	99.18181818181819	3991.7017906336087	7
+SC	13176.0	99.81818181818181	3903.9593663911855	6
+WA	13204.0	100.03030303030303	4026.2718089990817	5
+MI	13235.0	100.26515151515152	4609.100149219466	4
+VA	13309.0	100.82575757575758	4392.208275941228	3
+OH	13424.0	97.27536231884058	3778.518378491915	2
+ME	14024.0	107.87692307692308	5626.146390532546	1
