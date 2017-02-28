@@ -4,15 +4,15 @@
 
 #step 1 (from local): run this script to remove all spaces in files in the directory
 
-for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
+# for file in *; do mv "$file" `echo $file | tr ' ' '_'` ; done
 
-#step 2 (from local): move all pertinent files into their own directory to appease the Hive gods
+# #step 2 (from local): move all pertinent files into their own directory to appease the Hive gods
 
-find . -name "*.csv" -exec sh -c 'NEWDIR=`basename "$1" .csv` ; mkdir "$NEWDIR" ; mv "$1" "$NEWDIR" ' _ {} \;
+# find . -name "*.csv" -exec sh -c 'NEWDIR=`basename "$1" .csv` ; mkdir "$NEWDIR" ; mv "$1" "$NEWDIR" ' _ {} \;
 
 #step 3 (from local): put this onto github so it can be reached by my AWS: https://github.com/mathaholic/w205_exercise_1
 
-#step 4: go to my AWS, and clone the repo
+#step 4: go to AWS, and clone the prepared repo
 git clone https://github.com/mathaholic/w205_exercise_1
 
 #step 5: remove the header for all .csv files in the directory
@@ -25,7 +25,7 @@ for d in *; do
 done
 
 #step 6: write the data into HDFS
-
+su - w205
 #from the w205 user:
 hdfs dfs -mkdir hospitals
 hdfs dfs -put /data/w205_exercise_1/Hospital_General_Information/Hospital_General_Information.csv hospitals
@@ -50,7 +50,7 @@ hdfs dfs -mkdir effective_care_state
 hdfs dfs -put /data/w205_exercise_1/Timely_and_Effective_Care_-_State/Timely_and_Effective_Care_-_State.csv effective_care_state
 
 #step 7: start Hive
-
+logout
 # as the root user
 ./start-hadoop.sh
 # as root user

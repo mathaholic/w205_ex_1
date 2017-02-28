@@ -11,7 +11,7 @@
 -- omit the infrequently used scores, as variability on sparse data can give wonky results.
 
 
-create table  question_3_ans as SELECT
+create table question_3_ans as SELECT
 z.measure_id measure_id,
 z.measure_popularity measure_popularity,
 z.score_var score_var,
